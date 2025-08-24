@@ -660,6 +660,25 @@ def parse_arguments():
         help='Location of YAML to load config data.'
     )
 
+    # Optional CLI overrides for common fields
+    parser.add_argument('--api-key', type=str, help='OpenAI API key (overrides YAML if provided).')
+    parser.add_argument('--deepseek-api-key', type=str, help='DeepSeek API key (overrides YAML if provided).')
+    parser.add_argument('--llm-backend', type=str, help='LLM backend/model string (overrides YAML if provided).')
+    parser.add_argument('--research-topic', type=str, help='Research topic/idea (overrides YAML if provided).')
+    parser.add_argument('--compile-latex', type=str, help='True/False to compile LaTeX (overrides YAML).')
+    parser.add_argument('--language', type=str, help='Language for outputs (overrides YAML).')
+    parser.add_argument('--num-papers-lit-review', type=str, help='Number of papers to include in literature review (overrides YAML).')
+    parser.add_argument('--mlesolver-max-steps', type=str, help='Max steps for MLESolver (overrides YAML).')
+    parser.add_argument('--papersolver-max-steps', type=str, help='Max steps for PaperSolver (overrides YAML).')
+    parser.add_argument('--parallel-labs', type=str, help='True/False for running labs in parallel (overrides YAML).')
+    parser.add_argument('--num-parallel-labs', type=str, help='Number of parallel labs (overrides YAML).')
+    parser.add_argument('--load-previous', type=str, help='True/False to load previous state (overrides YAML).')
+    parser.add_argument('--except-if-fail', type=str, help='True/False to raise on failure (overrides YAML).')
+    parser.add_argument('--agentRxiv', type=str, help='True/False to enable AgentRxiv mode (overrides YAML).')
+    parser.add_argument('--construct-agentRxiv', type=str, help='True/False to construct AgentRxiv (overrides YAML).')
+    parser.add_argument('--agentrxiv-papers', type=str, help='Number of AgentRxiv papers (overrides YAML).')
+    parser.add_argument('--lab-index', type=str, help='Lab index (overrides YAML).')
+
     return parser.parse_args()
 
 
@@ -716,6 +735,25 @@ if __name__ == "__main__":
     yaml_to_use = user_args.yaml_location
     args = parse_yaml(yaml_to_use)
 
+    # Override YAML values with CLI arguments if provided
+    if getattr(user_args, 'api_key', None): args.api_key = user_args.api_key
+    if getattr(user_args, 'deepseek_api_key', None): args.deepseek_api_key = user_args.deepseek_api_key
+    if getattr(user_args, 'llm_backend', None): args.llm_backend = user_args.llm_backend
+    if getattr(user_args, 'research_topic', None): args.research_topic = user_args.research_topic
+    if getattr(user_args, 'compile_latex', None): args.compile_latex = user_args.compile_latex
+    if getattr(user_args, 'language', None): args.language = user_args.language
+    if getattr(user_args, 'num_papers_lit_review', None): args.num_papers_lit_review = user_args.num_papers_lit_review
+    if getattr(user_args, 'mlesolver_max_steps', None): args.mlesolver_max_steps = user_args.mlesolver_max_steps
+    if getattr(user_args, 'papersolver_max_steps', None): args.papersolver_max_steps = user_args.papersolver_max_steps
+    if getattr(user_args, 'parallel_labs', None): args.parallel_labs = user_args.parallel_labs
+    if getattr(user_args, 'num_parallel_labs', None): args.num_parallel_labs = user_args.num_parallel_labs
+    if getattr(user_args, 'load_previous', None): args.load_previous = user_args.load_previous
+    if getattr(user_args, 'except_if_fail', None): args.except_if_fail = user_args.except_if_fail
+    if getattr(user_args, 'agentRxiv', None): args.agentRxiv = user_args.agentRxiv
+    if getattr(user_args, 'construct_agentRxiv', None): args.construct_agentRxiv = user_args.construct_agentRxiv
+    if getattr(user_args, 'agentrxiv_papers', None): args.agentrxiv_papers = user_args.agentrxiv_papers
+    if getattr(user_args, 'lab_index', None): args.lab_index = user_args.lab_index
+
     llm_backend = args.llm_backend
     human_mode =  args.copilot_mode.lower() == "true" if type(args.copilot_mode) == str else args.copilot_mode
     compile_pdf = args.compile_latex.lower() == "true" if type(args.compile_latex) == str else args.compile_latex
@@ -744,7 +782,7 @@ if __name__ == "__main__":
     if api_key is not None and os.getenv('OPENAI_API_KEY') is None: os.environ["OPENAI_API_KEY"] = args.api_key
     if deepseek_api_key is not None and os.getenv('DEEPSEEK_API_KEY') is None: os.environ["DEEPSEEK_API_KEY"] = args.deepseek_api_key
 
-    if not api_key and not deepseek_api_key: raise ValueError("API key must be provided via --api-key / -deepseek-api-key or the OPENAI_API_KEY / DEEPSEEK_API_KEY environment variable.")
+    if not api_key and not deepseek_api_key and not llm_backend.startswith('ollama:'): raise ValueError("API key must be provided via --api-key / -deepseek-api-key or the OPENAI_API_KEY / DEEPSEEK_API_KEY environment variable.")
 
     if human_mode or args.research_topic is None: research_topic = input("Please name an experiment idea for AgentLaboratory to perform: ")
     else: research_topic = args.research_topic

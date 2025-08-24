@@ -42,10 +42,23 @@
 
 ### 👾 Currently supported models
 
-* **OpenAI**: o1, o1-preview, o1-mini, gpt-4o, o3-mini
+* **OpenAI**: o1, o1-preview, o1-mini, gpt-4o, o3-mini, gpt-4o-mini
 * **DeepSeek**: deepseek-chat (deepseek-v3)
+* **Local (Ollama)**: any installed chat model via Ollama, e.g. `gpt-oss:20b`
 
-To select a specific llm set the flag `--llm-backend="llm_model"` for example `--llm-backend="gpt-4o"` or `--llm-backend="deepseek-chat"`. Please feel free to add a PR supporting new models according to your need!
+To select a specific llm set the flag `--llm-backend="llm_model"` for example `--llm-backend="gpt-4o"`, `--llm-backend="deepseek-chat"`, or a local Ollama tag like `--llm-backend="gpt-oss:20b"`.
+
+#### Using Ollama (local inference)
+
+1) Install Ollama and pull a model, e.g. `gpt-oss:20b`.
+2) Ensure the Ollama service is running on `http://127.0.0.1:11434`.
+3) Run Agent Laboratory with the Ollama model name:
+
+```
+python ai_lab_repo.py --yaml-location "experiment_configs/MATH_agentlab.yaml" --llm-backend "gpt-oss:20b"
+```
+
+No API keys are required for Ollama backends.
 
 ## 🖥️ Installation
 
