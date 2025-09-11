@@ -32,7 +32,7 @@ papersolver-max-steps: 1
 # The lab index for this lab (used for parallel runs)
 lab-index: 1
 # If you want to load an existing save
-load-existing: True
+load-existing: False
 # If fail, run exception?
 except-if-fail: False
 # Compile latex into PDFs during paper-solver
