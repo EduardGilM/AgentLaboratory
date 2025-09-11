@@ -49,7 +49,7 @@ task-notes:
     - 'Plantea el baseline: MAP-Elites estándar con descriptores geométricos (posición X-Y, velocidad).'
     - 'NO sobrecomplicar el plan inicial: un solo experimento con variación controlada.'
   data-preparation:
-    - 'Selecciona un entorno adecuado (por ejemplo, Ant de Brax).'
+    - 'Selecciona un entorno adecuado (por ejemplo, Ant de Brax) o cualquier otro que sea compatible con las métricas.'
     - 'Implementa la extracción de datos necesarios para las métricas (por ejemplo, secuencia de posiciones o velocidades a lo largo del episodio).'
     - 'Asegúrate de tener funciones para calcular Lempel-Ziv complexity y O-Information sobre las trayectorias.'
     - 'Normaliza las métricas para que puedan integrarse con otros descriptores si es necesario.'
@@ -57,7 +57,6 @@ task-notes:
   running-experiments:
     - 'Ejecuta MAP-Elites estándar como baseline en al menos 1M evaluaciones o hasta convergencia.'
     - 'Ejecuta MAP-Elites modificando el criterio de selección para incluir métricas informacionales.'
-    - 'Paraleliza las evaluaciones con JAX para reducir el tiempo de cómputo.'
     - 'Registra métricas en cada iteración: coverage, QD-score, media de complejidad Lempel-Ziv y O-Information.'
     - 'Guarda los descriptores y las métricas en archivos para análisis posterior.'
     - 'Implementa visualizaciones dinámicas (e.g., heatmaps del espacio de descriptores con color por O-Information).'
