@@ -9,9 +9,9 @@ api-key: "OPENAI-API-KEY-HERE"
 # or deepseek-api-key: "DEEPSEEK-API-KEY-HERE"
 
 # Agent Laboratory backend
-llm-backend: "ollama:gpt-oss:20b"
+llm-backend: "ollama:qwen2.5:32b"
 # Literature review backend
-lit-review-backend: "ollama:gpt-oss:20b"
+lit-review-backend: "ollama:qwen2.5:32b"
 
 # Base language
 language: "Spanish"
