@@ -21,7 +21,7 @@ num-papers-lit-review: 10
 # Number of agentRxiv papers to lit review
 agentrxiv-papers: 5
 # Total number of papers to write in sequence
-num-papers-to-write: 3
+num-papers-to-write: 10
 # Do you want to run multiple agent labs in parallel?
 parallel-labs: True
 
