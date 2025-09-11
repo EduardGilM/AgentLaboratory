@@ -23,7 +23,7 @@ agentrxiv-papers: 5
 # Total number of papers to write in sequence
 num-papers-to-write: 10
 # Do you want to run multiple agent labs in parallel?
-parallel-labs: True
+parallel-labs: False
 
 # Total mle-solver steps per lab
 mlesolver-max-steps: 3
