@@ -23,7 +23,7 @@ agentrxiv-papers: 5
 # Total number of papers to write in sequence
 num-papers-to-write: 10
 # Do you want to run multiple agent labs in parallel?
-parallel-labs: False
+parallel-labs: True
 
 # Total mle-solver steps per lab
 mlesolver-max-steps: 3
@@ -49,7 +49,7 @@ task-notes:
     - 'Plantea el baseline: MAP-Elites estándar con descriptores geométricos (posición X-Y, velocidad).'
     - 'NO sobrecomplicar el plan inicial: un solo experimento con variación controlada.'
   data-preparation:
-    - 'Selecciona un entorno adecuado (por ejemplo, Ant de Brax) o cualquier otro que sea compatible con las métricas.'
+    - 'Selecciona un entorno adecuado que sea compatible con las métricas, evitando el uso de BRAX o entornos similares. Asegúrate de que el entorno permita la extracción de secuencias de datos necesarias para calcular Lempel-Ziv y O-Information.'
     - 'Implementa la extracción de datos necesarios para las métricas (por ejemplo, secuencia de posiciones o velocidades a lo largo del episodio).'
     - 'Asegúrate de tener funciones para calcular Lempel-Ziv complexity y O-Information sobre las trayectorias.'
     - 'Normaliza las métricas para que puedan integrarse con otros descriptores si es necesario.'

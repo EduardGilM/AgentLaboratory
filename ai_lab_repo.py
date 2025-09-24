@@ -863,7 +863,7 @@ if __name__ == "__main__":
                 try: future.result()
                 except Exception as e: print(f"Error in lab: {e}")
 
-        raise NotImplementedError("Todo: implement parallel labs")
+        # raise NotImplementedError("Todo: implement parallel labs")
     else:
         # remove previous files
         remove_figures()

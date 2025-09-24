@@ -202,7 +202,7 @@ class ReviewersAgent:
 
 
 class BaseAgent:
-    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
+    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=200, openai_api_key=None):
         if notes is None: self.notes = []
         else: self.notes = notes
         self.max_steps = max_steps
