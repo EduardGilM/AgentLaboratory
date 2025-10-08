@@ -782,7 +782,7 @@ if __name__ == "__main__":
     if api_key is not None and os.getenv('OPENAI_API_KEY') is None: os.environ["OPENAI_API_KEY"] = args.api_key
     if deepseek_api_key is not None and os.getenv('DEEPSEEK_API_KEY') is None: os.environ["DEEPSEEK_API_KEY"] = args.deepseek_api_key
 
-    if not api_key and not deepseek_api_key and not llm_backend.startswith('ollama:'): raise ValueError("API key must be provided via --api-key / -deepseek-api-key or the OPENAI_API_KEY / DEEPSEEK_API_KEY environment variable.")
+    if not api_key and not deepseek_api_key and not llm_backend.startswith('ollama:') and not llm_backend.startswith('openrouter'): raise ValueError("API key must be provided via --api-key / -deepseek-api-key or the OPENAI_API_KEY / DEEPSEEK_API_KEY environment variable.")
 
     if human_mode or args.research_topic is None: research_topic = input("Please name an experiment idea for AgentLaboratory to perform: ")
     else: research_topic = args.research_topic

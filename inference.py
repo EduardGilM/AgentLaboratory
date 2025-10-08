@@ -91,7 +91,16 @@ def query_model(model_str, prompt, system_prompt, openai_api_key=None, gemini_ap
                         completion = client.chat.completions.create(
                             model="gpt-4o-mini-2024-07-18", messages=messages, temperature=temp)
                 answer = completion.choices[0].message.content
-
+            elif model_str.startswith('openrouter'):
+                messages = [
+                    {"role": "user", "content": system_prompt + prompt}]
+                    client = OpenAI(
+                        api_key=openai_api_key,
+                        base_url="https://openrouter.ai/api/v1"
+                    )
+                    completion = client.chat.completions.create(
+                        model=model_str[11:], messages=messages)
+                answer = completion.choices[0].message.content
             elif model_str == "gemini-2.0-pro":
                 genai.configure(api_key=gemini_api_key)
                 model = genai.GenerativeModel(model_name="gemini-2.0-pro-exp-02-05", system_instruction=system_prompt)
